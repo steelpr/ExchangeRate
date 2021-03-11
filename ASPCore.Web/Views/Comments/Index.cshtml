@@ -1,0 +1,65 @@
+﻿@model IEnumerable<ASPCore.Data.Models.Comment>
+@using System.Security.Claims;
+@{
+    ViewData["Title"] = "Index";
+    Layout = "~/Views/Shared/_Layout.cshtml";
+}
+@{
+    var user = this.User.FindFirst(ClaimTypes.Name).Value;
+}
+
+<h1>Comments</h1>
+
+<p>
+    <a asp-action="Create">Create New</a>
+</p>
+<table class="table">
+    <thead>
+        <tr>
+            <th>
+                @Html.DisplayNameFor(model => model.Title)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.Date)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.Content)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.UserEmail)
+            </th>
+            <th></th>
+        </tr>
+    </thead>
+    <tbody>
+        @foreach (var item in Model)
+        {
+            <tr>
+                <td>
+                    @Html.DisplayFor(modelItem => item.Title)
+                </td>
+                <td>
+                    @Html.DisplayFor(modelItem => item.Date)
+                </td>
+                <td>
+                    @Html.DisplayFor(modelItem => item.Content)
+                </td>
+                <td>
+                    @Html.DisplayFor(modelItem => item.UserEmail)
+                </td>
+                <td>
+                    @if (item.UserEmail == user)
+                    {
+                        <a asp-action="Edit" asp-route-id="@item.Id">Edit | </a>
+
+                        <a asp-action="Delete" asp-route-id="@item.Id">Delete|</a>
+
+                    }
+                    <a asp-action="Details" asp-route-id="@item.Id">Details</a>
+
+
+                </td>
+            </tr>
+        }
+    </tbody>
+</table>

@@ -1,0 +1,73 @@
+﻿@model IEnumerable<ASPCore.Data.Models.Currency>
+
+@{
+    ViewData["Title"] = "Exchange Rate";
+    Layout = "~/Views/Shared/_Layout.cshtml";
+}
+
+<h1>Exchange Rates</h1>
+
+<table class="table">
+    <thead>
+        <tr>
+            <th class="table-dark">
+                @Html.DisplayNameFor(model => model.LastUpdate)
+            </th>
+            <th class="table-dark">
+                @Html.DisplayNameFor(model => model.Gold)
+            </th>
+            <th class="table-dark">
+                @Html.DisplayNameFor(model => model.Name)
+            </th>
+            <th class="table-dark">
+                @Html.DisplayNameFor(model => model.Code)
+            </th>
+            <th class="table-dark">
+                @Html.DisplayNameFor(model => model.Ratio)
+            </th>
+            <th class="table-dark">
+                @Html.DisplayNameFor(model => model.ReverseRate)
+            </th>
+            <th class="table-dark">
+                @Html.DisplayNameFor(model => model.Rate)
+            </th>
+            <th class="table-dark">
+                @Html.DisplayNameFor(model => model.UpdateDate)
+            </th>
+            <th></th>
+        </tr>
+    </thead>
+    <tbody>
+@foreach (var item in Model) {
+        <tr>
+            <td class="table-primary">
+                @Html.DisplayFor(modelItem => item.LastUpdate)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.Gold)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.Name)
+            </td>
+            <td class="table-primary">
+                @Html.DisplayFor(modelItem => item.Code)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.Ratio)
+            </td>
+            <td class="table-primary">
+                @Html.DisplayFor(modelItem => item.ReverseRate)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.Rate)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.UpdateDate)
+            </td>
+            <td>
+                <a asp-action="Details" asp-route-id="@item.Id">Details</a> 
+            </td>
+        </tr>
+}
+    </tbody>
+</table>
